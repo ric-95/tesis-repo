@@ -1,0 +1,14 @@
+name: tesis-env
+dependencies:
+  - conda
+  - numpy
+  - matplotlib
+  - pandas
+  - scipy
+  - seaborn
+  - ipython
+  - dask
+  - pip
+  - pip:
+    - -e ./cflowpost-primitives
+    - -e ./cflowpost-azimuthal-average
