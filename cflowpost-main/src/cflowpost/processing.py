@@ -2,7 +2,7 @@ from . import datatypes as dt
 import numpy as np
 
 
-def process_turbulent_flow_fields(slice_df,
+def process_turbulent_flow_fields(df,
                                   length_ref,
                                   u_ref,
                                   coord_keys,
@@ -11,17 +11,43 @@ def process_turbulent_flow_fields(slice_df,
                                   norm_u_keys,
                                   r_keys,
                                   norm_r_keys):
+    """Given a dataframe, processes turbulent flow data referenced by the
+    provided keys.
+
+    This function will:
+
+    - Non-dimensionalize the flow velocity and turbulent statistics as well
+      as the coordinate system.
+
+    - Compute the second and third invariants of the anisotropy tensor.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+    length_ref : float
+    u_ref : float
+    coord_keys : List[str]
+    norm_coord_keys : list[str]
+    u_keys : List[str]
+    norm_u_keys : List[str]
+    r_keys : List[str]
+    norm_r_keys : List[str]
+
+    Returns
+    -------
+    pandas.DataFrame
+    """
     coord_keys = list(coord_keys)
     norm_coord_keys = list(norm_coord_keys)
     u_keys = list(u_keys)
     norm_u_keys = list(norm_u_keys)
     r_keys = list(r_keys)
     norm_r_keys = list(norm_r_keys)
-    slice_df = normalize_coordinates(slice_df,
-                                     coord_keys,
-                                     norm_coord_keys,
-                                     length_ref)
-    norm_slice_df = flow_vars(slice_df,
+    df = normalize_coordinates(df,
+                               coord_keys,
+                               norm_coord_keys,
+                               length_ref)
+    norm_slice_df = flow_vars(df,
                               u_keys=u_keys,
                               r_keys=r_keys,
                               norm_u_keys=norm_u_keys,
