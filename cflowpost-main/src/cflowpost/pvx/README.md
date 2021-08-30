@@ -25,12 +25,12 @@ from many different sources while maintaining a reproducible and reliable
 extraction workflow.
 
 Defining and executing these configuration objects is extremely simple. Simple 
-wrapper functions are implemented at the top of the package to:
+functions are implemented at the top of the subpackage for:
 
 - Extraction
   - `pvx.extract(extraction_config, source_config, output_dir, pvbatch_bin)`
 
-- Define geometries
+- Defining geometries
   - `pvx.plane_definition`
   - `pvx.line_definition`
   ```python
@@ -45,17 +45,18 @@ wrapper functions are implemented at the top of the package to:
                        x_res: int, y_res: int, timestep: float,
                        variables: List[str], output: str)
   
-- Build the extraction configuration based on geometric definitions.
+- Building the extraction configuration based on geometric definitions.
   - `pvx.build_extraction_config(line_definitions, plane_definitions)`
 
-- Specify a source
+- Specifying a source and producing a source configuration
   - `pvx.openfoam_source(case_path)`
   - `pvx.vtk_source(vtk_file)`
   - `pvx.csv_source(csv_file, x_col, y_col, z_col)`
 
 This is particularly useful for Large Eddy Simulations in complex flows 
 because of the reduction in computational time yielded by the averaging
-the flow in a certain dimension. 
+the flow in a certain dimension, which is not necessarily along one of 
+the axes or even a straight line. 
 
 In the following example will be shown the script needed to extract planes
 to perform an azimuthal average of an axisymmetric 3D turbulent flow.
