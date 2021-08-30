@@ -65,7 +65,9 @@ def build_extraction_config(cyl_point1,
                             num_planes,
                             x_res,
                             y_res,
-                            timestep,):
+                            timestep,
+                            origin=ORIGIN,
+                            variables=VARIABLES):
     radial1, axial1 = cyl_point1
     radial2, axial2 = cyl_point2
     plane_nums = np.arange(num_planes)
@@ -76,9 +78,9 @@ def build_extraction_config(cyl_point1,
                for theta in thetas]
     outputs = [FILE_TEMPLATE.substitute(number=str(plane_num).zfill(3))
                for plane_num in plane_nums]
-    plane_definitions = [pvx.plane_definition(list(ORIGIN), point1, point2,
+    plane_definitions = [pvx.plane_definition(list(origin), point1, point2,
                                               x_res, y_res, timestep,
-                                              list(VARIABLES), output)
+                                              list(variables), output)
                          for point1, point2, output
                          in zip(point1s, point2s, outputs)]
     return pvx.build_extraction_config(plane_definitions=plane_definitions)
