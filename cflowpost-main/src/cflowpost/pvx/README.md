@@ -2,7 +2,9 @@
 =====
 
 Subpackage for automating complex data extraction pipelines leveraging 
-an existing [ParaView](https://www.paraview.org/) installation. 
+an existing [ParaView](https://www.paraview.org/) installation. For best
+results, store the path to the `pvbatch` binary in the environment variable
+`PVBATCH_BIN`. It is also possible to specify it as a parameter.
 
 Each extraction is performed by specifying two separate configurations:
 
@@ -26,7 +28,7 @@ Defining and executing these configuration objects is extremely simple. Simple
 wrapper functions are implemented at the top of the package to:
 
 - Extraction
-  - `pvx.extract(extraction_config, source_config, output_dir)`
+  - `pvx.extract(extraction_config, source_config, output_dir, pvbatch_bin)`
 
 - Define geometries
   - `pvx.plane_definition`
