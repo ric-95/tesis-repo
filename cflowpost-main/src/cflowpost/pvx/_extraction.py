@@ -17,7 +17,14 @@ def parse_args():
     parser.add_argument("--vtk-source",
                         help="Flag if reading vtk file",
                         action="store_true")
-
+    parser.add_argument("--path-to-source", "-p",
+                        help="Path pointing to the source file.",
+                        default=None)
+    parser.add_argument("--config-file", help="Path to configuration file.",
+                        default=None)
+    parser.add_argument("--output-dir",
+                        help="Path to directory to dump files in.",
+                        default="./raw/")
     parser.add_argument("--x-col",
                         help="Column to use as X coordinate if reading "
                              "from csv.",
@@ -30,14 +37,6 @@ def parse_args():
                         help="Column to use as Z coordinate if reading "
                              "from csv.",
                         default="z")
-    parser.add_argument("--path-to-source", "-p",
-                        help="Path pointing to the source file.",
-                        default=None)
-    parser.add_argument("--config-file", help="Path to configuration file.",
-                        default=None)
-    parser.add_argument("--output-dir",
-                        help="Path to directory to dump files in.",
-                        default="./raw/")
     return parser.parse_args()
 
 
@@ -88,8 +87,8 @@ def export_spreadheet_view_as_csv(csv_file, spreadsheet_view):
 
 
 def read_config(config_json=None, **kwargs):
-    with open(config_json, "r") as f:
-        return json.load(f, **kwargs)
+    with open(config_json, "r+") as f:
+        return json.loads(f.read(), **kwargs)
 
 
 def read_openfoam_case(source_file):

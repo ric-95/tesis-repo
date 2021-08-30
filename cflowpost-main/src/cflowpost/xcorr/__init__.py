@@ -1,0 +1,1 @@
+from ._xcorr import SignalStackXCorrelationFunction

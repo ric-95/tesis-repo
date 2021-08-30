@@ -10,5 +10,6 @@ dependencies:
   - dask
   - pip
   - pip:
-    - -e ./cflowpost-primitives
-    - -e ./cflowpost-azimuthal-average
+    - toolz
+    - -e ./cflowpost-main
+    - -e ./thesis-main
