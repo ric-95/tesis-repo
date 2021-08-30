@@ -29,6 +29,9 @@ wrapper functions are implemented at the root of the package to:
   - `pvx.plane_definition`
   - `pvx.line_definition`
   ```python
+  Point = Sequence[float, float, float]
+  
+  
   def line_definition(point1: Point, point2: Point,
                       resolution: int, timestep: float,
                       variables: List[str], output: str)
