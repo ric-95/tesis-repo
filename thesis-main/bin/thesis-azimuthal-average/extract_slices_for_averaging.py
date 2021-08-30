@@ -14,9 +14,7 @@ Assumptions:
 import numpy as np
 
 from cflowpost import pvx
-import numpy
 from string import Template
-import os
 
 ORIGIN = (0., 0., 0.)
 PI = np.pi
