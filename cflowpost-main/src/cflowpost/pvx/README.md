@@ -22,8 +22,11 @@ By keeping the what from the how separate, `pvx` allows one to extract data
 from many different sources while maintaining a reproducible and reliable 
 extraction workflow.
 
-Also, defining these configuration objects is extremely simple. Simple 
-wrapper functions are implemented at the root of the package to:
+Defining and executing these configuration objects is extremely simple. Simple 
+wrapper functions are implemented at the top of the package to:
+
+- Extraction
+  - `pvx.extract(extraction_config, source_config, output_dir)`
 
 - Define geometries
   - `pvx.plane_definition`
@@ -40,8 +43,9 @@ wrapper functions are implemented at the root of the package to:
                        x_res: int, y_res: int, timestep: float,
                        variables: List[str], output: str)
   
-- Set the extraction configuration
+- Build the extraction configuration based on geometric definitions.
   - `pvx.build_extraction_config(line_definitions, plane_definitions)`
+
 - Specify a source
   - `pvx.openfoam_source(case_path)`
   - `pvx.vtk_source(vtk_file)`
