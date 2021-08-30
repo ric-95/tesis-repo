@@ -1,15 +1,8 @@
 name: tesis-env
 dependencies:
   - conda
-  - numpy
-  - matplotlib
-  - pandas
-  - scipy
-  - seaborn
   - ipython
-  - dask
   - pip
   - pip:
-    - toolz
     - -e ./cflowpost-main
     - -e ./thesis-main
