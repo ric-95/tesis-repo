@@ -3,7 +3,7 @@ from ._definitions import Point, Line, Plane
 import os
 from typing import List
 
-PVBATCH_DEFAULT_PATH = "~/ParaView-5.9.1-MPI-Linux-Python3.8-64bit/bin/pvbatch"
+PVBATCH_DEFAULT_PATH = os.environ.get("PVBATCH_BIN")
 
 
 def extract(extraction_config: configbuilder.ExtractionConfig,
