@@ -114,6 +114,7 @@ def read_csv_source(source_file,
                                     Input=csv_source)
     table_to_points.XColumn = x_col
     table_to_points.YColumn = y_col
+    table_to_points.KeepAllDataArrays = 1
     if two_dimensional:
         table_to_points.a2DPoints = 1
         return Delaunay2D(registrationName="surface", Input=table_to_points)
