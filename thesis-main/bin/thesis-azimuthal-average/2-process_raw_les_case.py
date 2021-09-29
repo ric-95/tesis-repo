@@ -96,6 +96,16 @@ def run(file_pattern,
     fh.check_create_dir(output_dir)
     azim_avg_df.drop(
         columns="vtkValidPointMask").to_csv(output_file, sep=",", index=False)
+    x_col, y_col = NORM_COORD_KEYS
+    z_col = "t"
+    cwd = os.path.dirname(__file__)
+    line_config_file = os.path.join(cwd, "line_extraction_config.json")
+    line_config = read_json(line_config_file)
+    extract_lines_from_processed_slice(output_file,
+                                       x_col=x_col,
+                                       y_col=y_col,
+                                       z_col=z_col,
+                                       line_config_json=line_config)
 
 
 def main():
