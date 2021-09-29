@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 requirements = ["numpy", "pandas", "matplotlib",
-                "scipy", "seaborn", "toolz"]
+                "scipy", "seaborn", "toolz", "dask"]
 
 setup(name="cflowpost",
       author="Ricardo Franco Estrada",
