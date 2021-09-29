@@ -6,3 +6,5 @@ dependencies:
   - pip:
     - -e ./cflowpost-main
     - -e ./thesis-main
+variables:
+  PVBATCH_BIN: "/home/ricardo/ParaView-5.9.1-MPI-Linux-Python3.8-64bit/bin/pvbatch"
