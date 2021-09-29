@@ -1,8 +1,9 @@
 """Extracts slices to perform an azimuthal average.
 
 Usage:
-    python ./extract_slices_for_averaging.py --num-planes 16 --timestep latest \\
-    --point1 0.09 0 --point2 0 0.15 --x-res 90 --y-res 150 --output-dir "."
+    python ./1-extract_slices_for_averaging.py $CASE_DIR --num-planes 16 \\
+    --timestep latest --radial-extension 0.09 --axial-extension 0.15 \\
+    --x-res 90 --y-res 150
 
 Assumptions:
 
@@ -25,17 +26,17 @@ FILE_TEMPLATE = Template("azim_average/raw/SLICE${number}.csv")
 def parse_args():
     from argparse import ArgumentParser
     parser = ArgumentParser()
-    parser.add_argument("--case-dir", type=str, default=".",
+    parser.add_argument("case-dir", type=str, default=".",
                         help="Path to OpenFOAM case directory.")
     parser.add_argument("--num-planes", type=int, default=16,
                         help="Number of planes to average.")
     parser.add_argument("--timestep", default="latest",
                         help="Timestep at which to extract sample.",)
-    parser.add_argument("--point1", nargs=2, type=float,
+    parser.add_argument("--radial-extension", nargs=2, type=float,
                         help="Radial and axial coordinates of first point of"
                              "plane. First value is the radial position, second"
                              "value is the axial position.")
-    parser.add_argument("--point2", nargs=2, type=float,
+    parser.add_argument("--axial-extension", nargs=2, type=float,
                         help="Radial and axial coordinates of second point of"
                              "plane.First value is the radial position, second"
                              "value is the axial position.")
@@ -46,8 +47,10 @@ def parse_args():
 
 def main():
     args = parse_args()
-    extraction_config = build_extraction_config(cyl_point1=args.point1,
-                                                cyl_point2=args.point2,
+    cyl_point1 = [args.radial_extension, 0]
+    cyl_point2 = [0, args.axial_extension]
+    extraction_config = build_extraction_config(cyl_point1=cyl_point1,
+                                                cyl_point2=cyl_point2,
                                                 num_planes=args.num_planes,
                                                 x_res=args.x_res,
                                                 y_res=args.y_res,
