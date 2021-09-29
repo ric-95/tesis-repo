@@ -47,6 +47,11 @@ def _parse_args():
     return parser.parse_args()
 
 
+def read_json(json_file, **kwargs):
+    with open(json_file, mode="r") as f:
+        return json.loads(f.read(), **kwargs)
+
+
 def lookup_filepattern(file_pattern,
                        sort=True):
     if sort:
