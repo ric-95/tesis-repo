@@ -1,7 +1,7 @@
 from . import configbuilder
 from ._definitions import Point, Line, Plane
 import os
-from typing import List
+from typing import List, Union
 
 PVBATCH_DEFAULT_PATH = os.environ.get("PVBATCH_BIN")
 
@@ -49,7 +49,7 @@ def line_definition(point1: Point, point2: Point,
 
 
 def plane_definition(origin: Point, point1: Point, point2: Point,
-                     x_res: int, y_res: int, timestep: float,
+                     x_res: int, y_res: int, timestep: Union[float, str],
                      variables: List[str], output: str):
     return Plane(origin=origin, point1=point1, point2=point2,
                  x_res=x_res, y_res=y_res, timestep=timestep,
