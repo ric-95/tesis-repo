@@ -59,6 +59,19 @@ def lookup_filepattern(file_pattern,
     return glob.glob(file_pattern)
 
 
+def extract_lines_from_processed_slice(slice_csv, line_config_json,
+                                       x_col="r/D_b", y_col="x/D_b",
+                                       z_col="t"):
+    extraction_config = pvx.extraction_json_to_config(line_config_json)
+    slice_source = pvx.csv_source(slice_csv, x_col=x_col,
+                                  y_col=y_col, z_col=z_col)
+    output_dir = os.path.dirname(slice_csv)
+    pvx.extract(extraction_config=extraction_config,
+                source_config=slice_source,
+                output_dir=output_dir,
+                )
+
+
 def run(file_pattern,
         output_file):
     csv_list = lookup_filepattern(file_pattern)
